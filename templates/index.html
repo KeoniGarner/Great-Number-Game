@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Great Number Game</title>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h3>I am thinking of a number between 1 and 100.</h3>
+    <h3>Go on. Take a guess!</h3>
+
+    {% if 'guess' in session %}
+        {% if session['guess'] > session['number'] %}
+<div>
+    <h1>Too High</h1>
+</div>
+<form action="/guess" method='post'>
+    <input type="text" name="guess">
+    <input type="submit">
+</form>
+        {% elif session['guess'] < session['number'] %}
+<div>
+    <h1>Too Low</h1>
+</div>
+<form action="/guess" method='post'>
+    <input type="text" name="guess">
+    <input type="submit">
+</form>
+        {% else %}
+<div>
+    <h1>You Got It!</h1>
+    <form action="/playagain" method="post">
+        <input type="submit" value="Play Again!">
+    </form>
+</div>
+        {% endif %}
+    {% else %}
+<form action="/guess" method='post'>
+    <input type="text" name="guess">
+    <input type="submit">
+</form>
+    {% endif %}
+
+
+
+</body>
+</html>
